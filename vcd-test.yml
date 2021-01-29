@@ -1,0 +1,30 @@
+---
+- name: Testing vCloud Director
+  hosts: localhost
+
+  vars_files:
+    - vcd-login.yml
+
+  vars:
+    - vcd_vm_name: "vApp1-VM"
+    - vcd_vapp: "My-vApp1"
+    - vcd_vdc: "vmware-vdc-test"
+    - operation: "list-disks"
+
+  tasks:
+  - name: list vapp vm disks
+    vcd_vapp_vm:
+      target_vm_name: "{{ vcd_vm_name }}"
+      target_vapp: "{{ vcd_vapp }}"
+      target_vdc: "{{ vcd_vdc }}"
+      operation: "{{ operation }}"
+      user: "{{ vcd_user }}"
+      password: "{{ vcd_password }}"
+      org: "{{ vcd_org }}"
+      host: "{{ vcd_host }}"
+      verify_ssl_certs: "{{ vcd_ssl }}"
+    register: results
+
+  - debug:
+      var: results
+...

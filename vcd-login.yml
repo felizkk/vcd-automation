@@ -1,0 +1,6 @@
+# vCD Credentials
+vcd_user: "admin"
+vcd_password: "strongpassword"
+vcd_org: "superorg"
+vcd_host: "portal.example.cloud.com"
+vcd_ssl: true

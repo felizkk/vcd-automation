@@ -1,6 +1,7 @@
 ---
 - name: Testing vCloud Director
   hosts: localhost
+  gather_facts: no
 
   vars_files:
     - vcd-login.yml

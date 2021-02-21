@@ -1,6 +1,7 @@
 ---
 - name: Create New Virtual Machine
   hosts: localhost
+  gather_facts: no
 
   vars_files:
     - vcd-login.yml
@@ -10,11 +11,14 @@
     - vcd_vdc: "vmware-vdc-test"
     - vcd_vm_name: "vApp1-VM-2"
     - vcd_vapp: "My-vApp1"
+    - vcd_source_catalog_name: "Public Catalog"
     - vcd_source_template_name: "CentOS-7-Template-Official"
     - vcd_source_vm_name: "vm-centos7"
     - vcd_vm_hostname: "mynewvm.localhost"
     - vcd_vm_password: "rootpass"
     - vcd_vm_network: "Network1"
+    - vcd_ip_allocation_mode: "DHCP"
+    - vcd_power_on: "false"
 
   tasks:
   - name: create vapp vm from catalog
@@ -23,19 +27,17 @@
       target_vapp: "{{ vcd_vapp }}"
       target_vdc: "{{ vcd_vdc }}"
       source_vdc: "{{ vcd_vdc }}"
-      source_catalog_name: "Public Catalog"
+      source_catalog_name: "{{ vcd_source_catalog_name }}"
       source_template_name: "{{ vcd_source_template_name }}"
       source_vm_name: "{{ vcd_source_vm_name }}"
       hostname: "{{ vcd_vm_hostname }}"
       vmpassword: "{{ vcd_vm_password }}"
       vmpassword_auto: "false"
       vmpassword_reset: "false"
-      ip_allocation_mode: "DHCP"
-      power_on: "true"
       all_eulas_accepted: "true"
-      #storage_profile: "Standard"
       network: "{{ vcd_vm_network }}"
-      #cust_script: "test_script"
+      ip_allocation_mode: "{{ vcd_ip_allocation_mode }}"
+      power_on: "{{ vcd_power_on }}"
       deploy: false
       state: "present"
       user: "{{ vcd_user }}"

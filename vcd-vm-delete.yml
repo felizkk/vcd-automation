@@ -1,6 +1,7 @@
 ---
-- name: Testing vCloud Director
+- name: Delete Virtual Machine
   hosts: localhost
+  gather_facts: no
 
   vars_files:
     - vcd-login.yml

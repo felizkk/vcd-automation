@@ -1,7 +1,8 @@
 ---
-- name: Testing vCloud Director
+- name: Change Power State
   hosts: localhost
-
+  gather_facts: no
+  
   vars_files:
     - vcd-login.yml
 

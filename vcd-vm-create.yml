@@ -56,4 +56,9 @@
       ip_allocation_mode: MANUAL
       ip_address: "{{ vcd_ip_allocation_mode }}"
       state: update
+      user: "{{ vcd_user }}"
+      password: "{{ vcd_password }}"
+      org: "{{ vcd_org }}"
+      host: "{{ vcd_host }}"
+      verify_ssl_certs: "{{ vcd_ssl }}"
 ...

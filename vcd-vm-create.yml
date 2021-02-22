@@ -54,7 +54,7 @@
       vdc: "{{ vcd_vdc }}"
       network: "{{ vcd_vm_network }}"
       ip_allocation_mode: MANUAL
-      ip_address: "{{ vcd_ip_allocation_mode }}"
+      ip_address: "{{ vcd_vm_ip_address }}"
       state: update
       user: "{{ vcd_user }}"
       password: "{{ vcd_password }}"

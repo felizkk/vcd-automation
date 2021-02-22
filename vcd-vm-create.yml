@@ -18,6 +18,7 @@
     - vcd_vm_password: "rootpass"
     - vcd_vm_network: "Network1"
     - vcd_ip_allocation_mode: "DHCP"
+    - vcd_vm_ip_address: "10.10.30.19"
     - vcd_power_on: "false"
 
   tasks:
@@ -45,4 +46,14 @@
       org: "{{ vcd_org }}"
       host: "{{ vcd_host }}"
       verify_ssl_certs: "{{ vcd_ssl }}"
+
+  - name: update nic with manual IP
+    vcd_vapp_vm_nic:
+      vm_name: "{{ vcd_vm_name }}"
+      vapp: "{{ vcd_vapp }}"
+      vdc: "{{ vcd_vdc }}"
+      network: "{{ vcd_vm_network }}"
+      ip_allocation_mode: MANUAL
+      ip_address: "{{ vcd_ip_allocation_mode }}"
+      state: update
 ...
